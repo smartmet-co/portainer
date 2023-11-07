@@ -16,7 +16,21 @@ services:
     networks:
       - traefik-network
     restart: unless-stopped
-
+  smartmet-server-db:
+    image: smartmet-server-db
+    container_name: smartmet-server-db
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "5"
+            max-size: "10m"
+    restart: always
+    ports:
+     - "5432:5432"
+    volumes:
+      - /smartmet/data/db:/var/lib/postgresql/data
+    networks:
+      traefik-network:
 volumes:
   smartmetserver-storage-cnf:
     
