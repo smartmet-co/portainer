@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  geoweb:
+    image: opengeoweb/geoweb
+    container_name: geoweb
+    restart: unless-stopped
+    environment:
+      - GW_APP_URL=https://geoweb.co.meteo.fi
+      - GW_CAP_BASE_URL=https://geoweb-cap.co.meteo.fi
+      - GW_CAP_CONFIGURATION_FILENAME=capWarningPresets.json
+    labels:
+      - "traefik.http.routers.geoweb.entrypoints=websecure"
+      - "traefik.http.routers.geoweb.rule=Host(`geoweb.co.meteo.fi`)"
+      - "traefik.http.services.geoweb.loadbalancer.server.port=8080"
+    networks:
+      - traefik-network
+    volumes:
+      - geoweb-storage:/usr/share/nginx/html/assets
+  geoweb-backend-cap:
+    image: registry.gitlab.com/opengeoweb/backend-services/cap-backend:main
+    container_name: geoweb-backend-cap
+    restart: unless-stopped
+    environment:
+      - url_whitelist=["http://smartalert.co.meteo.fi/"]
+    labels:
+      - "traefik.http.routers.geoweb-backend-cap.entrypoints=websecure"
+      - "traefik.http.routers.geoweb-backend-cap.rule=Host(`geoweb-cap.co.meteo.fi`)"
+      - "traefik.http.services.geoweb-backend-cap.loadbalancer.server.port=8080"
+    networks:
+      - traefik-network
+      
+volumes:
+  geoweb-storage:
+  
+networks:
+    traefik-network:
+      external: true
