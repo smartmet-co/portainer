@@ -8,11 +8,9 @@ services:
       - "traefik.http.routers.smartmetserver.rule=Host(`data.co.meteo.fi`)"
       - "traefik.http.services.smartmetserver.loadbalancer.server.port=8080"
     volumes:
-      - /smartmet/data/gfs/colombia/surface/querydata:/smartmet/data/gfs/surface
-      - /smartmet/data/gfs/colombia/pressure/querydata:/smartmet/data/gfs/pressure
-      - /smartmet/data/gem/colombia/surface/querydata:/smartmet/data/gem/surface
-      - /smartmet/data/gem/colombia/pressure/querydata:/smartmet/data/gem/pressure
-      - smartmetserver-storage-cnf:/etc/smartmet
+      - /smartmet/cnf/server:/etc/smartmet
+      - /smartmet/share:/smartmet/share
+      - /smartmet/data:/smartmet/data
     networks:
       - traefik-network
     restart: unless-stopped
