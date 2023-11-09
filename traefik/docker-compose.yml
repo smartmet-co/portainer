@@ -17,7 +17,7 @@ services:
       - "--entrypoints.websecure.http.tls=true"
       - "--entrypoints.websecure.http.tls.certResolver=myresolver"
       - "--entrypoints.websecure.http.tls.domains[0].main=data.co.meteo.fi"
-      - "--entrypoints.websecure.http.tls.domains[0].sans=traefik.co.meteo.fi,portainer.co.meteo.fi"
+      - "--entrypoints.websecure.http.tls.domains[0].sans=traefik.co.meteo.fi,portainer.co.meteo.fi,geoweb.co.meteo.fi"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=mikko@rauhala.net"
