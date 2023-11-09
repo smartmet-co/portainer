@@ -17,14 +17,14 @@ services:
       - "--entrypoints.websecure.http.tls=true"
       - "--entrypoints.websecure.http.tls.certResolver=myresolver"
       - "--entrypoints.websecure.http.tls.domains[0].main=data.co.meteo.fi"
-      - "--entrypoints.websecure.http.tls.domains[0].sans=traefik.co.meteo.fi,portainer.co.meteo.fi,geoweb.co.meteo.fi"
+      - "--entrypoints.websecure.http.tls.domains[0].sans=traefik.co.meteo.fi,portainer.co.meteo.fi,geoweb.co.meteo.fi,portainer.smartmetospa.ideam.gov.co,data.smartmetospa.ideam.gov.co,traefik.smartmetospa.ideam.gov.co,geoweb.smartmetospa.ideam.gov.co"
       - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
       - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.myresolver.acme.email=mikko@rauhala.net"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     privileged: true
     labels:
-      - "traefik.http.routers.traefik.rule=Host(`traefik.co.meteo.fi`)"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.co.meteo.fi`) || Host(`traefik.smartmetospa.ideam.gov.co`)"
       - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
     ports:
