@@ -7,7 +7,7 @@ services:
     restart: always
     labels:
       - "traefik.http.routers.portainer.entrypoints=websecure"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.co.meteo.fi`)"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.co.meteo.fi`) || Host(`portainer.smartmetospa.ideam.gov.co`)"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
     volumes:
           # So that Portaomer can listen to the Docker events
