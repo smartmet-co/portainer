@@ -5,7 +5,7 @@ services:
     container_name: smartmetserver
     labels:
       - "traefik.http.routers.smartmetserver.entrypoints=websecure"
-      - "traefik.http.routers.smartmetserver.rule=Host(`data.co.meteo.fi`)"
+      - "traefik.http.routers.smartmetserver.rule=Host(`data.co.meteo.fi`) || Host(`data.smartmetospa.ideam.gov.co`)"
       - "traefik.http.services.smartmetserver.loadbalancer.server.port=8080"
     volumes:
       - /smartmet/cnf/server:/etc/smartmet
