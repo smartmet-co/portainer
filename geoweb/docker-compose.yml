@@ -11,7 +11,7 @@ services:
       - GW_CAP_CONFIGURATION_FILENAME=capWarningPresets.json
     labels:
       - "traefik.http.routers.geoweb.entrypoints=websecure"
-      - "traefik.http.routers.geoweb.rule=Host(`geoweb.co.meteo.fi`) || Host(`geoweb.smartmetospa.ideam.gov.co`)"
+      - "traefik.http.routers.geoweb.rule=Host(`geoweb.smartmetospa.ideam.gov.co`)"
       - "traefik.http.services.geoweb.loadbalancer.server.port=8080"
     networks:
       - traefik-network
@@ -25,7 +25,7 @@ services:
       - url_whitelist=["http://alert.smartmetospa.ideam.gov.co/"]
     labels:
       - "traefik.http.routers.geoweb-backend-cap.entrypoints=websecure"
-      - "traefik.http.routers.geoweb-backend-cap.rule=Host(`geoweb-cap.co.meteo.fi`) || Host(`geoweb-cap.smartmetospa.ideam.gov.co`)"
+      - "traefik.http.routers.geoweb-backend-cap.rule=Host(`geoweb-cap.smartmetospa.ideam.gov.co`)"
       - "traefik.http.services.geoweb-backend-cap.loadbalancer.server.port=8080"
     networks:
       - traefik-network
