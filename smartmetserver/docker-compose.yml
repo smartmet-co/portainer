@@ -11,6 +11,8 @@ services:
       - /smartmet/cnf/server:/etc/smartmet
       - /smartmet/share/wms/customers/ideam:/smartmet/share/wms/customers/ideam
       - /smartmet/data:/smartmet/data
+    ports:
+     - "8080:8080"
     networks:
       - traefik-network
     restart: unless-stopped
