@@ -10,6 +10,7 @@ services:
     volumes:
       - /smartmet/cnf/server:/etc/smartmet
       - /smartmet/share/wms/customers/ideam:/smartmet/share/wms/customers/ideam
+      - /smartmet/share/dali/customers/ideam:/smartmet/share/dali/customers/ideam
       - /smartmet/data:/smartmet/data
     ports:
      - "8080:8080"
