@@ -1,0 +1,20 @@
+version: '3'
+services:
+  smartmetalert:
+    image: fmidev/smartmetalert
+    container_name: smartmetalert
+    labels:
+      - "traefik.http.routers.smartmetalert.entrypoints=websecure"
+      - "traefik.http.routers.smartmetalert.rule=Host(`alert.smartmetospa.ideam.gov.co`)"
+      - "traefik.http.services.smartmetalert.loadbalancer.server.port=80"
+    volumes:
+      - /smartmet/cnf/smartalert/capmap-config.js:/var/www/html/capmap-config.js
+      - /smartmet/cnf/smartalert/index.html:/var/www/html/index.html
+      - /smartmet/editor/smartalert:/var/www/html/data
+    networks:
+      - traefik-network
+    restart: unless-stopped
+    
+networks:
+    traefik-network:
+      external: true
