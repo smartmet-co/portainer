@@ -2,6 +2,7 @@ services:
   wis2downloader:
     image: fmidev/wis2downloader
     container_name: wis2downloader
+    network_mode: bridge
     restart: always
     volumes:
       - /smartmet/data/incoming/gts/synop-bufr:/downloads
