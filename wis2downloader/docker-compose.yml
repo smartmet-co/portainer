@@ -4,7 +4,7 @@ services:
     container_name: wis2downloader
     restart: always
     volumes:
-      - /smartmet/data/incoming/wis2/synop:/downloads
+      - /smartmet/data/incoming/gts/synop-bufr:/downloads
     command: >
       -server ssl://globalbroker.meteo.fr:8883
       -topic cache/a/wis2/+/data/core/weather/surface-based-observations/synop
