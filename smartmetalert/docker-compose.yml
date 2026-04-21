@@ -1,4 +1,3 @@
-version: '3'
 services:
   smartmetalert:
     image: fmidev/smartmetalert
@@ -10,6 +9,7 @@ services:
     volumes:
       - /smartmet/cnf/smartalert/capmap-config.js:/var/www/html/capmap-config.js
       - /smartmet/cnf/smartalert/index.html:/var/www/html/index.html
+      - /smartmet/cnf/smartalert/img:/var/www/html/img/custom
       - /smartmet/editor/smartalert:/var/www/html/data
     ports:
      - "8081:80"
