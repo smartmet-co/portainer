@@ -1,6 +1,6 @@
 services:
   smartmetalert:
-    image: fmidev/smartmetalert
+    image: fmidev/smartmetalert:26.10.21-0de2f65
     container_name: smartmetalert
     labels:
       - "traefik.http.routers.smartmetalert.entrypoints=websecure"
